@@ -106,6 +106,16 @@
 	URL = [self expand:URL];	
 	NSURL *url = [NSURL URLWithString:URL];	
 	
+    // HTTP GET tuples.
+	NSDictionary *requestGetValues = [node objectForKey:@"HTTPGetValues"];
+	for (NSString *getValueKey in [requestGetValues allKeys]) {
+		NSString *getValue = [requestGetValues objectForKey:getValueKey];
+		if ([getValue length] == 0)
+			getValue = nil;
+		
+        
+	}
+    
 	ASIFormDataRequest *req = [[ASIFormDataRequest alloc] initWithURL:url];
 	
 	[req setCachePolicy:ASIDoNotReadFromCacheCachePolicy];
