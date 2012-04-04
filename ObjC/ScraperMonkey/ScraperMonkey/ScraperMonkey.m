@@ -103,8 +103,7 @@
 {
 	NSString *URL = [node objectForKey:@"URL"];
 	
-	URL = [self expand:URL];	
-	NSURL *url = [NSURL URLWithString:URL];	
+	URL = [self expand:URL];
 	
     // HTTP GET tuples.
 	NSDictionary *requestGetValues = [node objectForKey:@"HTTPGetValues"];
@@ -113,9 +112,10 @@
 		if ([getValue length] == 0)
 			getValue = nil;
 		
-        
+        URL = [URL stringByReplacingOccurrencesOfString:[requestGetValues objectForKey:getValueKey] withString:getValue];
 	}
     
+    NSURL *url = [NSURL URLWithString:URL];	
 	ASIFormDataRequest *req = [[ASIFormDataRequest alloc] initWithURL:url];
 	
 	[req setCachePolicy:ASIDoNotReadFromCacheCachePolicy];
